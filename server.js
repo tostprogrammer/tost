@@ -4,7 +4,7 @@ const ip = require("ip");
 const vict = require("./models/vict");
 const PORT = 29934;
 
-mongoose.connect(
+mongoose.connect(process.env.MONGODB_URI || 
 	"mongodb+srv://aven:parola@cluster0.zoi2e.mongodb.net/experimental?retryWrites=true&w=majority",
 	{
 		useNewUrlParser: true,
@@ -25,8 +25,8 @@ server.get("/", (req, res) => {
 			date: new Date(),
 		})
 			.save()
-			.then(() => res.status(200).send("ok"));
+			.then(() => res.status(200).send(':)'));
 	});
 });
 
-server.listen(PORT);
+server.listen(process.env.PORT || PORT);
